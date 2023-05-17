@@ -1,7 +1,12 @@
 import React from 'react'
+import Search from '../components/Search'
+import { Word } from './Word'
 
 export const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        <Search />
+        <Word />
+    </div>
   )
 }
