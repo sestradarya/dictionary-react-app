@@ -9,7 +9,7 @@ const Search = () => {
     // const navigate = useNavigate()
 
     const submitHandler = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         // navigate('searched/' + input)
     }
 
@@ -21,8 +21,8 @@ const Search = () => {
 }
 
 const Form = styled.form`
-     margin: 1rem 20rem 2rem;
-  position: relative;
+    margin: 1rem 20rem 2rem;
+    position: relative;
 
   input {
     border: none;
