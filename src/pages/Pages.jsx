@@ -7,9 +7,9 @@ import { Word } from "./Word";
 export const Pages = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="*" element={<Home />} />
       <Route path="/dictionary" element={<Dictionary />} />
-      <Route path="/word/:name" element={<Word />} />
+      
     </Routes>
   );
 };
