@@ -13,7 +13,6 @@ export const Home = () => {
       <Routes>
         <Route path="/word/:name" element={<Word />} />
       </Routes>
-      
     </div>
   );
 };

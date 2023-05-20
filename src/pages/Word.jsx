@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Search from "../components/Search";
 import saveGrayImage from "../images/save-gray.png";
 import saveRedImage from "../images/save-red.png"
 
@@ -68,7 +67,8 @@ export const Word = () => {
 
       {searchedWord[0] ? (
         <>
-          <p>{searchedWord[0].word}</p>
+          <h3>{searchedWord[0].word}</h3>
+          <p>{searchedWord[0].meanings[0].definitions[0].definition}</p>
           {saved.includes(searchedWord[0].word)?
           (<img src={saveRedImage} alt="" onClick={deleteWord}/>)
           :(<img src={saveGrayImage} alt="" onClick={saveWord}/>)

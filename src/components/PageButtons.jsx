@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useHref, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const PageButtons = () => {
   const [activeTab, setActiveTab] = useState("home");
+  
+  const params = useHref()
+
+  useEffect(() => {
+    setActiveTab(params === '/dictionary'? 'dictionary': 'home')
+  }, [params])
 
   return (
     <Buttons>
