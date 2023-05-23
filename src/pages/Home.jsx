@@ -1,18 +1,22 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
 import Search from "../components/Search";
 import { Word } from "./Word";
 
 export const Home = () => {
+  const [word, setWord] = useState('')
+
+  const startSearch = (newWord) => {
+    setWord(newWord)
+  }
 
 
   return (
     <div>
-      <Search />
-      <Routes>
-        <Route path="/word/:name" element={<Word />} />
-      </Routes>
+      <Search startSearch={startSearch}/>
+      <Word word={word}/>
     </div>
   );
 };
+

@@ -3,14 +3,13 @@ import { useState } from 'react'
 import {useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Search = () => {
+const Search = ({startSearch}) => {
 
     const [input, setInput] = useState('')
-    const navigate = useNavigate()
 
     const submitHandler = (event) => {
         event.preventDefault();
-        navigate('word/' + input)
+        startSearch(input)
     }
 
   return (

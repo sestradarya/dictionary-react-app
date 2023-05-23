@@ -1,16 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import saveGrayImage from "../images/save-gray.png";
 import saveRedImage from "../images/save-red.png"
 
-export const Word = () => {
+export const Word = (props) => {
   const [searchedWord, setSearchedWord] = useState([]);
-  //   const [randomWord, setRandomWord] = useState('')
   const [saved, setSaved] = useState([]);
 
-  const params = useParams();
 
   const getSearched = async (name) => {
     const responce = await fetch(
@@ -40,10 +37,10 @@ export const Word = () => {
   //   }
 
   useEffect(() => {
-    if (params.name) {
-      getSearched(params.name);
+    if (props.word) {
+      getSearched(props.word);
     }
-  }, [params.name]);
+  }, [props.word]);
 
   //   useEffect(() => {
   //     getRandom()
@@ -63,7 +60,6 @@ export const Word = () => {
 
   return (
     <div>
-      {/* <p>{randomWord}</p> */}
 
       {searchedWord[0] ? (
         <>
