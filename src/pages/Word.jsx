@@ -28,13 +28,7 @@ export const Word = (props) => {
     setSaved(prev => prev.filter((el, i) => el !== searchedWord[0].word))
   }
 
-  //   const getRandom = async () => {
-  //     const responce = await fetch(`https://random-word-api.vercel.app/api?words=1`)
-
-  //     const data = await responce.json()
-  //     setRandomWord(data)
-  //     // navigate('word/' + randomWord)
-  //   }
+ 
 
   useEffect(() => {
     if (props.word) {
@@ -42,10 +36,6 @@ export const Word = (props) => {
     }
   }, [props.word]);
 
-  //   useEffect(() => {
-  //     getRandom()
-
-  //   }, [])
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("savedWords"));
