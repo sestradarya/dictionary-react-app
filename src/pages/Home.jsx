@@ -5,7 +5,7 @@ import Search from "../components/Search";
 import { Word } from "./Word";
 
 export const Home = () => {
-  const [word, setWord] = useState('');
+  const [word, setWord] = useState("");
 
   const startSearch = (newWord) => {
     setWord(newWord);
