@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import saveGrayImage from "../images/save-gray.png";
-import saveRedImage from "../images/save-red.png"
+import saveClearImage from "../images/save-clear.png";
+import saveBlueImage from "../images/save-blue.png"
 
 export const Word = (props) => {
   const [searchedWord, setSearchedWord] = useState([]);
@@ -56,8 +56,8 @@ export const Word = (props) => {
           <h3>{searchedWord[0].word}</h3>
           <p>{searchedWord[0].meanings[0].definitions[0].definition}</p>
           {saved.includes(searchedWord[0].word)?
-          (<img src={saveRedImage} alt="" onClick={deleteWord}/>)
-          :(<img src={saveGrayImage} alt="" onClick={saveWord}/>)
+          (<img src={saveBlueImage} alt="" onClick={deleteWord}/>)
+          :(<img src={saveClearImage} alt="" onClick={saveWord}/>)
           }
         </>
       ) : (

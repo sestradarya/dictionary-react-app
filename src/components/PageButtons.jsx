@@ -7,11 +7,11 @@ const PageButtons = () => {
   const [activeTab, setActiveTab] = useState("home");
 
   const navigate = useNavigate();
-  const params = useHref()
+  const params = useHref();
 
   useEffect(() => {
-    setActiveTab(params === '/dictionary'? 'dictionary': 'home')
-  }, [params])
+    setActiveTab(params === "/dictionary" ? "dictionary" : "home");
+  }, [params]);
 
   const changeTab = (tabName) => {
     setActiveTab(tabName);
@@ -26,8 +26,12 @@ const PageButtons = () => {
           changeTab("home");
         }}
       >
-        <input type="radio" name="radio" 
-        checked={activeTab === 'home'}/>
+        <input
+          type="radio"
+          name="radio"
+          checked={activeTab === "home"}
+          onChange={() => {}}
+        />
         <span className="name">Home</span>
       </label>
       <label
@@ -36,9 +40,11 @@ const PageButtons = () => {
           changeTab("dictionary");
         }}
       >
-        <input type="radio" name="radio" 
-        checked={activeTab === 'dictionary'}
-        
+        <input
+          type="radio"
+          name="radio"
+          checked={activeTab === "dictionary"}
+          onChange={() => {}}
         />
         <span className="name">Dictionary</span>
       </label>
@@ -51,7 +57,7 @@ const Buttons = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   border-radius: 0.5rem;
