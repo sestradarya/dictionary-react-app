@@ -33,30 +33,32 @@ export const Dictionary = () => {
   return (
     <Container>
       <h2>My Dictionary</h2>
-      {currentTab === "dictionary" ? (
-        saved.map((word) => (
-          <Box key={word}>
-            <div
-              onClick={() => {
-                renderWord(word);
-              }}
-            >
-              <p>{word}</p>
-            </div>
+      <div className="words-container">
+        {currentTab === "dictionary" ? (
+          saved.map((word) => (
+            <Box key={word}>
+              <div
+                onClick={() => {
+                  renderWord(word);
+                }}
+              >
+                <p>{word}</p>
+              </div>
 
-            <img
-              src={saveBlueImage}
-              alt=""
-              onClick={() => {
-                deleteWord(word);
-                console.log("hoor");
-              }}
-            />
-          </Box>
-        ))
-      ) : (
-        <Word word={currentTab} />
-      )}
+              <img
+                src={saveBlueImage}
+                alt=""
+                onClick={() => {
+                  deleteWord(word);
+                  console.log("hoor");
+                }}
+              />
+            </Box>
+          ))
+        ) : (
+          <Word word={currentTab} />
+        )}
+      </div>
     </Container>
   );
 };
@@ -65,18 +67,34 @@ const Container = styled.div`
   width: 600px;
   display: flex;
   flex-direction: column;
+
+  .words-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    background-color: #e2e2e2;
+    padding: 1rem;
+  }
 `;
 
 const Box = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 0.4rem;
+  border-radius: 13px;
 
-  div{
+  div {
     flex: 1 0 auto;
     display: flex;
-    flex-direction: start
+    flex-direction: start;
+  }
+
+  img {
+    max-height: 35px;
   }
 `;
-
 
 // To add an animation on delition
