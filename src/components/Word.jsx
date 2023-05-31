@@ -9,6 +9,7 @@ import styled from "styled-components";
 export const Word = (props) => {
   const [searchedWord, setSearchedWord] = useState({});
   const [saved, setSaved] = useState([]);
+  const [index, setIndex] = useState(0)
 
   const getSearched = async (name) => {
     const responce = await fetch(
@@ -75,21 +76,18 @@ export const Word = (props) => {
           ) : (
             ""
           )}
-          <div class="mydict">
+          <div className="mydict">
             <div>
-              <label>
-                <input type="radio" name="radio" checked="true" />
-                <span>Noun</span>
-              </label>
-              <label>
-                <input type="radio" name="radio" />
-                <span>Verb</span>
-              </label>
-              <label>
-                <input type="radio" name="radio" />
-                <span>Adjective</span>
-              </label>
+              {
+                searchedWord.meanings.map((meaning, i) => <label>
+                  <input type="radio" name="radio" checked={index == i? true: false} />
+                  <span onClick={() => {setIndex(i)}}>{meaning.partOfSpeech}</span>
+              </label>)
+              }
             </div>
+          </div>
+          <div className="definition">
+
           </div>
         </Card>
       ) : (
