@@ -5,6 +5,7 @@ import saveClearImage from "../images/save-clear.png";
 import saveBlueImage from "../images/save-blue.png";
 import soundIcon from "../images/sound.png";
 import styled from "styled-components";
+import { WordDefinition } from "./WordDefinition";
 
 export const Word = (props) => {
   const [searchedWord, setSearchedWord] = useState({});
@@ -87,7 +88,7 @@ export const Word = (props) => {
             </div>
           </div>
           <div className="definition">
-
+              <WordDefinition definition={searchedWord.meanings[index]}/>
           </div>
         </Card>
       ) : (
