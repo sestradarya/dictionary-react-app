@@ -1,9 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 
 export const WordDefinition = (props) => {
   return (
-    <div>
+    <Definition>
         <p>{props.definition.definitions[0].definition}</p>
-    </div>
+    </Definition>
   )
 }
+
+
+const Definition  = styled.div`
+
+`

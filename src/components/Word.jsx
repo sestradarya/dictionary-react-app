@@ -6,11 +6,12 @@ import saveBlueImage from "../images/save-blue.png";
 import soundIcon from "../images/sound.png";
 import styled from "styled-components";
 import { WordDefinition } from "./WordDefinition";
+import { useRef } from "react";
 
 export const Word = (props) => {
   const [searchedWord, setSearchedWord] = useState({});
   const [saved, setSaved] = useState([]);
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
 
   const getSearched = async (name) => {
     const responce = await fetch(
@@ -48,6 +49,15 @@ export const Word = (props) => {
     localStorage.setItem("savedWords", JSON.stringify(saved));
   }, [saved]);
 
+
+  const audioRef = useRef(null);
+
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
   return (
     <div>
       {Object.keys(searchedWord).length ? (
@@ -68,7 +78,19 @@ export const Word = (props) => {
                   return (
                     <div className="phonetic">
                       <p>{phonetic.text}</p>
-                      {phonetic.audio ? <img src={soundIcon} alt="" /> : ""}
+                      {phonetic.audio ? (
+                        <img
+                          src={soundIcon}
+                          alt=""
+                          onClick={playAudio}
+                        />
+                      ) : (
+                        ""
+                      )}
+                      <audio
+                        ref={audioRef}
+                        src={phonetic.audio}
+                      />
                     </div>
                   );
                 }
@@ -79,16 +101,26 @@ export const Word = (props) => {
           )}
           <div className="mydict">
             <div>
-              {
-                searchedWord.meanings.map((meaning, i) => <label>
-                  <input type="radio" name="radio" checked={index == i? true: false} />
-                  <span onClick={() => {setIndex(i)}}>{meaning.partOfSpeech}</span>
-              </label>)
-              }
+              {searchedWord.meanings.map((meaning, i) => (
+                <label>
+                  <input
+                    type="radio"
+                    name="radio"
+                    checked={index == i ? true : false}
+                  />
+                  <span
+                    onClick={() => {
+                      setIndex(i);
+                    }}
+                  >
+                    {meaning.partOfSpeech}
+                  </span>
+                </label>
+              ))}
             </div>
           </div>
           <div className="definition">
-              <WordDefinition definition={searchedWord.meanings[index]}/>
+            <WordDefinition definition={searchedWord.meanings[index]} />
           </div>
         </Card>
       ) : (
@@ -99,15 +131,15 @@ export const Word = (props) => {
 };
 
 const Card = styled.div`
-.name{
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+  .name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-.name img{
-  max-height: 30px;
-}
+  .name img {
+    max-height: 30px;
+  }
 
   .phonetics {
     display: flex;
@@ -118,6 +150,7 @@ const Card = styled.div`
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    color: #12499a;
   }
 
   .phonetic img {
@@ -126,7 +159,7 @@ const Card = styled.div`
 
   :focus {
     outline: 0;
-    border-color: #2260ff;
+    border-color: #1a6dea;
     -webkit-box-shadow: 0 0 0 4px #b5c9fc;
     box-shadow: 0 0 0 4px #b5c9fc;
   }
@@ -157,9 +190,9 @@ const Card = styled.div`
   .mydict input[type="radio"]:checked + span {
     -webkit-box-shadow: 0 0 0 0.0625em #0043ed;
     box-shadow: 0 0 0 0.0625em #0043ed;
-    background-color: #dee7ff;
+    background-color: #1a6dea;
     z-index: 1;
-    color: #0043ed;
+    color: #fff;
   }
 
   label span {
@@ -170,9 +203,9 @@ const Card = styled.div`
     position: relative;
     margin-left: 0.0625em;
     -webkit-box-shadow: 0 0 0 0.0625em #b5bfd9;
-    box-shadow: 0 0 0 0.0625em #b5bfd9;
+    box-shadow: 0 0 0 0.0625em #1a6dea;
     letter-spacing: 0.05em;
-    color: #3e4963;
+    color: #1a6dea;
     text-align: center;
     -webkit-transition: background-color 0.5s ease;
     transition: background-color 0.5s ease;
