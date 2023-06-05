@@ -120,7 +120,7 @@ export const Word = (props) => {
             </div>
           </div>
           <div className="definition">
-            <WordDefinition definition={searchedWord.meanings[index]} />
+            <WordDefinition meanings={searchedWord.meanings[index]} />
           </div>
         </Card>
       ) : (
