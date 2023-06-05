@@ -9,7 +9,7 @@ export const WordDefinition = (props) => {
       <div className="definitions">
         <h4>DEFINITIONS {definitions.length}</h4>
         {definitions.map((def) => (
-          <div className="definition">
+          <div key={def.definition} className="definition">
             <div className="meaning">
               <h5>Meaning</h5>
               <p>{def.definition}</p>
@@ -26,13 +26,13 @@ export const WordDefinition = (props) => {
       {synonyms.length ? (
         <div className="synonyms">
           <h4>SYNONYMS {synonyms.length}</h4>
-          {synonyms.map(syn => <p>{syn}</p>)}
+          {synonyms.map(syn => <p key={syn}>{syn}</p>)}
         </div>
       ) : null}
       {antonyms.length ? (
         <div className="antonyms">
           <h4>ANTONYMS {antonyms.length}</h4>
-          {antonyms.map(ant => <p>{ant}</p>)}
+          {antonyms.map(ant => <p key={ant}>{ant}</p>)}
         </div>
       ) : null}
     </Definition>

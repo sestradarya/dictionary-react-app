@@ -18,5 +18,7 @@ export const Pages = () => {
 const Container = styled.div`
   display: flex;
   justify-content: center;
+
+  max-width: 780px;
   
 `

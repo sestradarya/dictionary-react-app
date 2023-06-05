@@ -76,7 +76,7 @@ export const Word = (props) => {
               {searchedWord.phonetics.map((phonetic) => {
                 if (phonetic.text) {
                   return (
-                    <div className="phonetic">
+                    <div className="phonetic" key={phonetic.text}>
                       <p>{phonetic.text}</p>
                       {phonetic.audio ? (
                         <img
@@ -102,11 +102,12 @@ export const Word = (props) => {
           <div className="mydict">
             <div>
               {searchedWord.meanings.map((meaning, i) => (
-                <label>
+                <label key={i}>
                   <input
                     type="radio"
                     name="radio"
                     checked={index == i ? true : false}
+                    readOnly
                   />
                   <span
                     onClick={() => {

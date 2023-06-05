@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import styled from "styled-components";
 import Search from "../components/Search";
 import { Word } from "../components/Word";
 
@@ -27,9 +28,15 @@ export const Home = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <Search startSearch={startSearch} />
       <Word word={word} />
-    </div>
+    </Container>
   );
 };
+
+
+const Container = styled.div`
+  
+`
+
