@@ -100,9 +100,11 @@ export const Dictionary = () => {
 };
 
 const Container = styled.div`
-  width: 600px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 
   .words-container {
     display: flex;
@@ -111,16 +113,18 @@ const Container = styled.div`
 
     background-color: #e2e2e2;
     padding: 1rem;
+
+    width: 100%;
   }
 
   .cssbuttons-io-button {
-    width: 35%;
+    width: 55%;
     background: #1a6dea;
     color: white;
     font-family: inherit;
     padding: 0.35em;
     padding-left: 1.2em;
-    font-size: 17px;
+    font-size: 1.05rem;
     font-weight: 500;
     border-radius: 0.9em;
     border: none;
@@ -186,9 +190,9 @@ const Container = styled.div`
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
-  .simple {
+  .cssbuttons-io-button.simple {
     padding-right: 0em;
-    width: 30%;
+    width: 40%;
   }
 `;
 

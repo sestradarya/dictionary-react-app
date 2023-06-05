@@ -4,7 +4,7 @@ import { useState } from "react";
 import saveClearImage from "../images/save-clear.png";
 import saveBlueImage from "../images/save-blue.png";
 import soundIcon from "../images/sound.png";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { WordDefinition } from "./WordDefinition";
 import { useRef } from "react";
 
@@ -60,6 +60,7 @@ export const Word = (props) => {
 
   return (
     <div>
+      <GlobalStyle />
       {Object.keys(searchedWord).length ? (
         <Card>
           <div className="name">
@@ -73,10 +74,10 @@ export const Word = (props) => {
 
           {searchedWord.phonetics && searchedWord.phonetics.length ? (
             <div className="phonetics">
-              {searchedWord.phonetics.map((phonetic) => {
+              {searchedWord.phonetics.map((phonetic, i) => {
                 if (phonetic.text) {
                   return (
-                    <div className="phonetic" key={phonetic.text}>
+                    <div className="phonetic" key={i}>
                       <p>{phonetic.text}</p>
                       {phonetic.audio ? (
                         <img
@@ -131,11 +132,21 @@ export const Word = (props) => {
   );
 };
 
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Unna:wght@700&display=swap');
+`
+
 const Card = styled.div`
   .name {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
+  }
+
+  .name h2{
+    font-family: 'Unna', serif;
+    font-size: 2rem;
   }
 
   .name img {
@@ -144,7 +155,8 @@ const Card = styled.div`
 
   .phonetics {
     display: flex;
-    gap: 1rem;
+    gap: 0.6rem;
+    flex-wrap: wrap;
   }
 
   .phonetic {

@@ -40,8 +40,9 @@ export const WordDefinition = (props) => {
 };
 
 const Definition = styled.div`
-  background-color: #c4c4c4;
+  background-color: #e2dddd;
   padding: 10px;
+  margin-top: 20px;
 
   .definition {
     margin: 10px;
