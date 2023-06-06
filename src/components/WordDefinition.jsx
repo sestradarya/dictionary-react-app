@@ -23,12 +23,14 @@ export const WordDefinition = (props) => {
           </div>
         ))}
       </div>
+
       {synonyms.length ? (
         <div className="synonyms">
           <h4>SYNONYMS {synonyms.length}</h4>
           {synonyms.map(syn => <p key={syn}>{syn}</p>)}
         </div>
       ) : null}
+
       {antonyms.length ? (
         <div className="antonyms">
           <h4>ANTONYMS {antonyms.length}</h4>
@@ -40,9 +42,17 @@ export const WordDefinition = (props) => {
 };
 
 const Definition = styled.div`
-  background-color: #e2dddd;
+  background-color: #eba7a7;
   padding: 10px;
   margin-top: 20px;
+  border-radius: 8px;
+  flex: 1 1 auto;
+
+  @media(min-width: 715px){
+    width: 560px;
+  }
+
+
 
   .definition {
     margin: 10px;

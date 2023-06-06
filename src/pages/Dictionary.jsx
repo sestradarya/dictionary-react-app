@@ -114,7 +114,7 @@ const Container = styled.div`
     background-color: #e2e2e2;
     padding: 1rem;
 
-    width: 100%;
+    width: 90%;
   }
 
   .cssbuttons-io-button {
@@ -124,7 +124,7 @@ const Container = styled.div`
     font-family: inherit;
     padding: 0.35em;
     padding-left: 1.2em;
-    font-size: 1.05rem;
+    font-size: 1.05rempx;
     font-weight: 500;
     border-radius: 0.9em;
     border: none;

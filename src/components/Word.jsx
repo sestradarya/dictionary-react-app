@@ -137,6 +137,10 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .name {
     display: flex;
     align-items: center;
@@ -151,6 +155,10 @@ const Card = styled.div`
 
   .name img {
     max-height: 30px;
+  }
+
+  .name img:hover{
+    cursor: pointer;
   }
 
   .phonetics {
@@ -168,6 +176,10 @@ const Card = styled.div`
 
   .phonetic img {
     max-height: 20px;
+  }
+
+  .phonetic img:hover{
+    cursor: pointer;
   }
 
   :focus {
@@ -212,7 +224,7 @@ const Card = styled.div`
     display: block;
     cursor: pointer;
     background-color: #fff;
-    padding: 0.375em 0.75em;
+    padding: 0.2em 0.75em;
     position: relative;
     margin-left: 0.0625em;
     -webkit-box-shadow: 0 0 0 0.0625em #b5bfd9;
