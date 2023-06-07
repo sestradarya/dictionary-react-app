@@ -24,7 +24,7 @@ const Container = styled.div`
   gap: 2rem;
   padding: 1rem;
 
-  background-color: white;
+  
 
 `;
 
