@@ -4,7 +4,7 @@ import { useState } from "react";
 import saveClearImage from "../images/save-clear.png";
 import saveBlueImage from "../images/save-blue.png";
 import soundIcon from "../images/sound.png";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { WordDefinition } from "./WordDefinition";
 import { useRef } from "react";
 
@@ -49,7 +49,6 @@ export const Word = (props) => {
     localStorage.setItem("savedWords", JSON.stringify(saved));
   }, [saved]);
 
-
   const audioRef = useRef(null);
 
   const playAudio = () => {
@@ -59,8 +58,7 @@ export const Word = (props) => {
   };
 
   return (
-    <div>
-      <GlobalStyle />
+    <>
       {Object.keys(searchedWord).length ? (
         <Card>
           <div className="name">
@@ -80,18 +78,11 @@ export const Word = (props) => {
                     <div className="phonetic" key={i}>
                       <p>{phonetic.text}</p>
                       {phonetic.audio ? (
-                        <img
-                          src={soundIcon}
-                          alt=""
-                          onClick={playAudio}
-                        />
+                        <img src={soundIcon} alt="" onClick={playAudio} />
                       ) : (
                         ""
                       )}
-                      <audio
-                        ref={audioRef}
-                        src={phonetic.audio}
-                      />
+                      <audio ref={audioRef} src={phonetic.audio} />
                     </div>
                   );
                 }
@@ -121,25 +112,22 @@ export const Word = (props) => {
               ))}
             </div>
           </div>
-          <div className="definition">
-            <WordDefinition meanings={searchedWord.meanings[index]} />
-          </div>
+
+          <WordDefinition meanings={searchedWord.meanings[index]} />
         </Card>
       ) : (
         <p>{"not found"}</p>
       )}
-    </div>
+    </>
   );
 };
-
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Unna:wght@700&display=swap');
-`
 
 const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  gap: 1rem;
 
   width: 100%;
 
@@ -148,18 +136,21 @@ const Card = styled.div`
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    
   }
 
-  .name h2{
-    font-family: 'Unna', serif;
+  .name h2 {
+    font-family: "Unna", serif;
     font-size: 1.8rem;
+    color: #2c2c2c;
+    
   }
 
   .name img {
     max-height: 30px;
   }
 
-  .name img:hover{
+  .name img:hover {
     cursor: pointer;
   }
 
@@ -180,7 +171,7 @@ const Card = styled.div`
     max-height: 20px;
   }
 
-  .phonetic img:hover{
+  .phonetic img:hover {
     cursor: pointer;
   }
 

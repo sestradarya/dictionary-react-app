@@ -17,14 +17,15 @@ function App() {
   );
 }
 
-
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   padding: 1rem;
+
+  background-color: white;
+
 `;
 
 export default App;

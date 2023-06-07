@@ -20,5 +20,7 @@ const Container = styled.div`
   justify-content: center;
 
   max-width: 780px;
+
+  width: 100%;
   
 `

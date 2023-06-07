@@ -7,7 +7,9 @@ export const WordDefinition = (props) => {
   return (
     <Definition>
       <div className="definitions">
-        <h4>DEFINITIONS {definitions.length}</h4>
+        <h4>
+          DEFINITIONS <span>{definitions.length}</span>
+        </h4>
         {definitions.map((def) => (
           <div key={def.definition} className="definition">
             <div className="meaning">
@@ -20,49 +22,78 @@ export const WordDefinition = (props) => {
                 <p>{def.example}</p>
               </div>
             )}
+            
           </div>
         ))}
       </div>
 
-      {synonyms.length ? (
-        <div className="synonyms">
-          <h4>SYNONYMS {synonyms.length}</h4>
-          {synonyms.map(syn => <p key={syn}>{syn}</p>)}
-        </div>
-      ) : null}
+      <div className="syn-ant">
+        {synonyms.length ? (
+          <div className="synonyms">
+            <h4>
+              SYNONYMS <span>{synonyms.length}</span>{" "}
+            </h4>
+            {synonyms.map((syn) => (
+              <p key={syn}>{syn}</p>
+            ))}
+          </div>
+        ) : null}
 
-      {antonyms.length ? (
-        <div className="antonyms">
-          <h4>ANTONYMS {antonyms.length}</h4>
-          {antonyms.map(ant => <p key={ant}>{ant}</p>)}
-        </div>
-      ) : null}
+        {antonyms.length ? (
+          <div className="antonyms">
+            <h4>
+              ANTONYMS <span>{antonyms.length}</span>{" "}
+            </h4>
+            {antonyms.map((ant) => (
+              <p key={ant}>{ant}</p>
+            ))}
+          </div>
+        ) : null}
+      </div>
     </Definition>
   );
 };
 
 const Definition = styled.div`
-  background-color: #eba7a7;
   box-sizing: border-box;
   padding: 10px;
   margin-top: 20px;
   border-radius: 8px;
   width: 100%;
 
-  @media(min-width: 715px){
+  @media (min-width: 600px) {
     width: 560px;
   }
 
-
-
   .definition {
-    margin: 10px;
+    padding: 10px;
     background-color: white;
     border-radius: 8px;
+
+    text-align: start;
+
+    border-bottom-width: 3px;
+
+    border-bottom-color: black;
+
+
   }
 
-  .definitions h4{
-    font-size: .9rem;
+  h4 {
+    font-size: 1.1rem;
     text-align: start;
+
+    color: #2c2c2c;
+  }
+
+  h4 span {
+    color: #515151;
+  }
+
+  h5 {
+    color: #2c2c2c;
+    font-size: 1rem;
+
+    margin: 0 0 4px 0;
   }
 `;
