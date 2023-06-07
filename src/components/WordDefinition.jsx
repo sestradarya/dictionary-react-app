@@ -43,10 +43,11 @@ export const WordDefinition = (props) => {
 
 const Definition = styled.div`
   background-color: #eba7a7;
+  box-sizing: border-box;
   padding: 10px;
   margin-top: 20px;
   border-radius: 8px;
-  flex: 1 1 auto;
+  width: 100%;
 
   @media(min-width: 715px){
     width: 560px;
@@ -58,5 +59,10 @@ const Definition = styled.div`
     margin: 10px;
     background-color: white;
     border-radius: 8px;
+  }
+
+  .definitions h4{
+    font-size: .9rem;
+    text-align: start;
   }
 `;

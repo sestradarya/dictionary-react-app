@@ -34,7 +34,7 @@ export const Dictionary = () => {
     <Container>
       {currentTab === "dictionary" ? (
         <button
-          class="cssbuttons-io-button simple"
+          className="cssbuttons-io-button simple"
           onClick={() => {
             setCurrentTab("dictionary");
           }}
@@ -43,20 +43,20 @@ export const Dictionary = () => {
         </button>
       ) : (
         <button
-          class="cssbuttons-io-button"
+          className="cssbuttons-io-button"
           onClick={() => {
             setCurrentTab("dictionary");
           }}
         >
           {" "}
           My Dictionary
-          <div class="icon">
+          <div className="icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-arrow-left"
+              className="bi bi-arrow-left"
               viewBox="0 0 16 16"
             >
               {" "}

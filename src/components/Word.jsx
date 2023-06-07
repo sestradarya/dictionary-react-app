@@ -141,6 +141,8 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
 
+  width: 100%;
+
   .name {
     display: flex;
     align-items: center;
@@ -150,7 +152,7 @@ const Card = styled.div`
 
   .name h2{
     font-family: 'Unna', serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .name img {

@@ -3,11 +3,16 @@ import { useEffect } from "react";
 import { Link, useHref, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const PageButtons = () => {
-  const [activeTab, setActiveTab] = useState("home");
+const PageButtons = () => { 
 
   const navigate = useNavigate();
   const params = useHref();
+
+  const [activeTab, setActiveTab] = useState("home");
+  const [homeIsChecked, setHomeIsChecked] = useState(params === "/home")
+  const [dictIsChecked, setDictIsChecked] = useState(params === "/dictionary")
+
+  
 
   useEffect(() => {
     setActiveTab(params === "/dictionary" ? "dictionary" : "home");
@@ -17,6 +22,19 @@ const PageButtons = () => {
     setActiveTab(tabName);
     navigate(`/${tabName}`);
   };
+
+  const handleChange = event => {
+    const target = event.target
+    if (target.name === 'home'){
+      setHomeIsChecked(prev => !prev)
+      setDictIsChecked(false) 
+    } else {
+      setDictIsChecked(prev => !prev)
+      setHomeIsChecked(false)
+    }
+  }
+
+  
 
   return (
     <Buttons>
@@ -28,9 +46,9 @@ const PageButtons = () => {
       >
         <input
           type="radio"
-          name="radio"
-          checked={activeTab === "home"}
-          onChange={() => {}}
+          name="home"
+          checked={homeIsChecked}
+          onChange={handleChange}
         />
         <span className="name">Home</span>
       </label>
@@ -42,9 +60,9 @@ const PageButtons = () => {
       >
         <input
           type="radio"
-          name="radio"
-          checked={activeTab === "dictionary"}
-          onChange={() => {}}
+          name="dict"
+          checked={dictIsChecked}
+          onChange={handleChange}
         />
         <span className="name">Dictionary</span>
       </label>
