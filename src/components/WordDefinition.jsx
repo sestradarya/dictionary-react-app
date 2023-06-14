@@ -17,7 +17,9 @@ export const WordDefinition = (props) => {
                 <h5>Meaning</h5>
                 <p>{def.definition}</p>
               </div>
-              
+              {def.example && <div className="line">
+              </div>}
+             
               {def.example && (
                 <div className="example">
                   <h5>Examples</h5>
@@ -83,21 +85,24 @@ const Definition = styled.div`
     
   }
 
-  .meaning{
-    
+  .meaning{}
+
+  .line{
+    background-color: #dcdcdc;
+    height: 2px;
+    border-radius: 20px; 
   }
 
   h4 {
     font-size: 1.1rem;
     text-align: start;
-
     padding: 1rem 0 1rem 0;
-
     color: #2c2c2c;
   }
 
   h4 span {
     color: #515151;
+    font-size: 1rem;
   }
 
   h5 {

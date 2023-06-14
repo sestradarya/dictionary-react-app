@@ -30,7 +30,7 @@ export const Home = () => {
   return (
     <Container>
       <Search startSearch={startSearch} />
-      <Word word={word} />
+      <Word word={word} random={true}/>
     </Container>
   );
 };

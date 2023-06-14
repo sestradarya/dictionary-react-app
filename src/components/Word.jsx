@@ -61,6 +61,7 @@ export const Word = (props) => {
     <>
       {Object.keys(searchedWord).length ? (
         <Card>
+          {props.random && <>random</>}
           <div className="name">
             <h2>{searchedWord.word}</h2>
             {saved.includes(searchedWord.word) ? (
