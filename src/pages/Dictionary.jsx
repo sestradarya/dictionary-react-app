@@ -24,9 +24,11 @@ export const Dictionary = () => {
   }, [saved]);
 
   const renderWord = (word) => {
-    ;
-    setTimeout(() => {setCurrentTab(word); setLoading(false);}, 2000)
-      };
+    setTimeout(() => {
+      setCurrentTab(word);
+      setLoading(false);
+    }, 2000);
+  };
 
   const deleteWord = (wordName) => {
     setSaved((prev) => prev.filter((el, i) => el !== wordName));
@@ -71,37 +73,51 @@ export const Dictionary = () => {
         </button>
       )}
 
-      {loading===false? (<div className="words-container">
-        {currentTab === "dictionary" ? (
-          saved.map((word) => (
-            <Box key={word}>
-              <div
-                onClick={() => {
-                  renderWord(word);
-                  setLoading(true)
-                  
-                }}
-              >
-                <p>{word}</p>
+      {loading === false ? (
+        <div className="words-container">
+          {currentTab === "dictionary" ? (
+            saved.length ? (
+              saved.map((word) => (
+                <Box key={word}>
+                  <div
+                    onClick={() => {
+                      renderWord(word);
+                      setLoading(true);
+                    }}
+                  >
+                    <p>{word}</p>
+                  </div>
+
+                  <img
+                    src={saveBlueImage}
+                    alt=""
+                    onClick={() => {
+                      deleteWord(word);
+                    }}
+                  />
+                </Box>
+              ))
+            ) : (
+              <div>
+                <StartCard>
+                  <div class="bg">
+                    <div>
+                      <p>Start saving words</p>
+                    </div>
+                  </div>
+                  <div class="blob"></div>
+                </StartCard>
               </div>
-
-              <img
-                src={saveBlueImage}
-                alt=""
-                onClick={() => {
-                  deleteWord(word);
-                }}
-              />
-            </Box>
-          ))
-        ) : (
-          <Word word={currentTab} />
-        )}
-      </div>) : <Loader>
-            <div className="justify-content-center jimu-primary-loading"></div>
-          </Loader>}
-
-      
+            )
+          ) : (
+            <Word word={currentTab} />
+          )}
+        </div>
+      ) : (
+        <Loader>
+          <div className="justify-content-center jimu-primary-loading"></div>
+        </Loader>
+      )}
     </Container>
   );
 };
@@ -116,11 +132,17 @@ const Container = styled.div`
   .words-container {
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     gap: 1rem;
 
     padding: 1rem;
 
     width: 90%;
+  }
+
+  .words-container>div {
+    display: flex;
+    justify-content: center;
   }
 
   .cssbuttons-io-button {
@@ -209,16 +231,15 @@ const Box = styled.div`
   padding: 0.6rem;
   border-radius: 13px;
 
-  
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 
   background: rgba(232, 232, 232, 0.58);
   border: 1px solid white;
   -webkit-box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-          box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
   -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   border-radius: 17px;
   text-align: center;
   cursor: pointer;
@@ -228,33 +249,30 @@ const Box = styled.div`
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-weight: bolder;
   color: #333333;
 
+  :hover {
+    border: 1px solid #1a6dea;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
 
-:hover {
-  border: 1px solid #1a6dea;
-  -webkit-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-          transform: scale(1.05);
-}
-
-:active {
-  -webkit-transform: scale(0.95) rotateZ(1.7deg);
-      -ms-transform: scale(0.95) rotate(1.7deg);
-          transform: scale(0.95) rotateZ(1.7deg);
-}
-
-  
+  :active {
+    -webkit-transform: scale(0.95) rotateZ(1.7deg);
+    -ms-transform: scale(0.95) rotate(1.7deg);
+    transform: scale(0.95) rotateZ(1.7deg);
+  }
 
   div {
     flex: 1 0 auto;
@@ -262,7 +280,7 @@ const Box = styled.div`
     flex-direction: start;
   }
 
-  div p{
+  div p {
     font-weight: 700;
     font-size: 1.1rem;
   }
@@ -271,7 +289,6 @@ const Box = styled.div`
     max-height: 35px;
   }
 `;
-
 
 const Loader = styled.div`
   position: absolute;
@@ -350,6 +367,120 @@ const Loader = styled.div`
       -webkit-box-shadow: 0 -8px #076fe5;
       box-shadow: 0 -8px #076fe5;
       height: 40px;
+    }
+  }
+`;
+
+const StartCard = styled.div`
+  position: relative;
+  width: 200px;
+  height: 150px;
+  border-radius: 14px;
+  z-index: 1111;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+
+  .bg {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 190px;
+    height: 140px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 2px solid white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bg p {
+    font-size: 1.3rem;
+  }
+
+  .bg p span {
+    font-style: italic;
+    color: #1a6dea;
+  }
+
+  .blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #1a6dea;
+    opacity: 1;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    -webkit-animation: blob-bounce 5s infinite ease;
+    animation: blob-bounce 5s infinite ease;
+  }
+
+  @-webkit-keyframes blob-bounce {
+    0% {
+      -webkit-transform: translate(-100%, -100%) translate3d(0, 0, 0);
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+    25% {
+      -webkit-transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+    50% {
+      -webkit-transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+    75% {
+      -webkit-transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+    100% {
+      -webkit-transform: translate(-100%, -100%) translate3d(0, 0, 0);
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes blob-bounce {
+    0% {
+      -webkit-transform: translate(-100%, -100%) translate3d(0, 0, 0);
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+    25% {
+      -webkit-transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+    50% {
+      -webkit-transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+    75% {
+      -webkit-transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+    100% {
+      -webkit-transform: translate(-100%, -100%) translate3d(0, 0, 0);
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
     }
   }
 `;
