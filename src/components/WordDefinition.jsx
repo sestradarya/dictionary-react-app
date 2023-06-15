@@ -37,8 +37,8 @@ export const WordDefinition = (props) => {
             <h4>
               SYNONYMS <span>{synonyms.length}</span>{" "}
             </h4>
-            {synonyms.map((syn) => (
-              <p key={syn}>{syn}</p>
+            {synonyms.map((syn, i) => (
+              <p key={i}>{syn}</p>
             ))}
           </div>
         ) : null}
@@ -48,8 +48,8 @@ export const WordDefinition = (props) => {
             <h4>
               ANTONYMS <span>{antonyms.length}</span>{" "}
             </h4>
-            {antonyms.map((ant) => (
-              <p key={ant}>{ant}</p>
+            {antonyms.map((ant, i) => (
+              <p key={i}>{ant}</p>
             ))}
           </div>
         ) : null}
@@ -117,5 +117,7 @@ const Definition = styled.div`
     justify-content: space-between;
 
     padding: 1rem;
+
+    text-align: left;
   }
 `;

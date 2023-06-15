@@ -8,10 +8,10 @@ import { Word } from "../components/Word";
 
 
 export const Home = () => {
-  const [word, setWord] = useState("");
+  const [word, setWord] = useState({});
 
   const startSearch = (newWord) => {
-    setWord(newWord);
+    setWord({name: newWord, random: false});
   };
 
   async function getRandom() {
@@ -20,7 +20,7 @@ export const Home = () => {
     );
 
     const data = await responce.json();
-    setWord(data[0]);
+    setWord({name: data[0], random: true});
   }
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const Home = () => {
   return (
     <Container>
       <Search startSearch={startSearch} />
-      <Word word={word} random={true}/>
+      <Word word={word.name} random={word.random}/>
     </Container>
   );
 };

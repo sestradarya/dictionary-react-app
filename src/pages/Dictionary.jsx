@@ -7,6 +7,7 @@ import saveBlueImage from "../images/save-blue.png";
 
 export const Dictionary = () => {
   const [saved, setSaved] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const [currentTab, setCurrentTab] = useState("dictionary");
 
@@ -23,79 +24,16 @@ export const Dictionary = () => {
   }, [saved]);
 
   const renderWord = (word) => {
-    setCurrentTab(word);
-  };
+    ;
+    setTimeout(() => {setCurrentTab(word); setLoading(false);}, 2000)
+      };
 
   const deleteWord = (wordName) => {
     setSaved((prev) => prev.filter((el, i) => el !== wordName));
   };
 
   return (
-    <Container>
-      {currentTab === "dictionary" ? (
-        <button
-          className="cssbuttons-io-button simple"
-          onClick={() => {
-            setCurrentTab("dictionary");
-          }}
-        >
-          My Dictionary
-        </button>
-      ) : (
-        <button
-          className="cssbuttons-io-button"
-          onClick={() => {
-            setCurrentTab("dictionary");
-          }}
-        >
-          {" "}
-          My Dictionary
-          <div className="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-arrow-left"
-              viewBox="0 0 16 16"
-            >
-              {" "}
-              <path
-                fill-rule="evenodd"
-                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-              />{" "}
-            </svg>
-          </div>
-        </button>
-      )}
-
-      <div className="words-container">
-        {currentTab === "dictionary" ? (
-          saved.map((word) => (
-            <Box key={word}>
-              <div
-                onClick={() => {
-                  renderWord(word);
-                }}
-              >
-                <p>{word}</p>
-              </div>
-
-              <img
-                src={saveBlueImage}
-                alt=""
-                onClick={() => {
-                  deleteWord(word);
-                  console.log("hoor");
-                }}
-              />
-            </Box>
-          ))
-        ) : (
-          <Word word={currentTab} />
-        )}
-      </div>
-    </Container>
+   
   );
 };
 
@@ -111,7 +49,6 @@ const Container = styled.div`
     flex-direction: column;
     gap: 1rem;
 
-    background-color: #e2e2e2;
     padding: 1rem;
 
     width: 90%;
@@ -200,9 +137,55 @@ const Box = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  padding: 0.4rem;
+  padding: 0.6rem;
   border-radius: 13px;
+
+  
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+
+  background: rgba(232, 232, 232, 0.58);
+  border: 1px solid white;
+  -webkit-box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+          box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: bolder;
+  color: #333333;
+
+
+:hover {
+  border: 1px solid #1a6dea;
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+:active {
+  -webkit-transform: scale(0.95) rotateZ(1.7deg);
+      -ms-transform: scale(0.95) rotate(1.7deg);
+          transform: scale(0.95) rotateZ(1.7deg);
+}
+
+  
 
   div {
     flex: 1 0 auto;
@@ -210,8 +193,95 @@ const Box = styled.div`
     flex-direction: start;
   }
 
+  div p{
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
   img {
     max-height: 35px;
+  }
+`;
+
+
+const Loader = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .jimu-primary-loading:before,
+  .jimu-primary-loading:after {
+    position: absolute;
+    top: 0;
+    content: "";
+  }
+
+  .jimu-primary-loading:before {
+    left: -19.992px;
+  }
+
+  .jimu-primary-loading:after {
+    left: 19.992px;
+    -webkit-animation-delay: 0.32s !important;
+    animation-delay: 0.32s !important;
+  }
+
+  .jimu-primary-loading:before,
+  .jimu-primary-loading:after,
+  .jimu-primary-loading {
+    background: #076fe5;
+    -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    width: 13.6px;
+    height: 32px;
+  }
+
+  .jimu-primary-loading {
+    text-indent: -9999em;
+    margin: auto;
+    position: absolute;
+    right: calc(50% - 6.8px);
+    top: calc(50% - 16px);
+    -webkit-animation-delay: 0.16s !important;
+    animation-delay: 0.16s !important;
+  }
+
+  @-webkit-keyframes loading-keys-app-loading {
+    0%,
+    80%,
+    100% {
+      opacity: 0.75;
+      -webkit-box-shadow: 0 0 #076fe5;
+      box-shadow: 0 0 #076fe5;
+      height: 32px;
+    }
+
+    40% {
+      opacity: 1;
+      -webkit-box-shadow: 0 -8px #076fe5;
+      box-shadow: 0 -8px #076fe5;
+      height: 40px;
+    }
+  }
+
+  @keyframes loading-keys-app-loading {
+    0%,
+    80%,
+    100% {
+      opacity: 0.75;
+      -webkit-box-shadow: 0 0 #076fe5;
+      box-shadow: 0 0 #076fe5;
+      height: 32px;
+    }
+
+    40% {
+      opacity: 1;
+      -webkit-box-shadow: 0 -8px #076fe5;
+      box-shadow: 0 -8px #076fe5;
+      height: 40px;
+    }
   }
 `;
 
